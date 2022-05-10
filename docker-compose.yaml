@@ -1,0 +1,28 @@
+services:
+  # Mongodb service
+  mongo_db:
+    container_name: MongoDB
+    image: mongo:latest
+    restart: always
+    ports:
+      - 2717:27017
+    volumes:
+      - mongo_db:/data/db
+
+  # Node application
+  api:
+    container_name: ProductAPI
+    build: .
+    ports: 
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+    environment:
+      PORT: 3000
+      DATABASE_URL: mongodb://mongo_db:27017
+      DATABASE_NAME: /ProductManagementDB
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongo_db: {}
