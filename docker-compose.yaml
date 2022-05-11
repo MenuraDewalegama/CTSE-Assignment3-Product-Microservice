@@ -1,13 +1,13 @@
 services:
   # Mongodb service
-  mongo_db:
+  mongodb:
     container_name: MongoDB
     image: mongo:latest
     restart: always
     ports:
       - 2717:27017
     volumes:
-      - mongo_db:/data/db
+      - mongodb:/data/db
 
   # Node application
   api:
@@ -19,10 +19,10 @@ services:
       - .:/usr/src/app
     environment:
       PORT: 3000
-      DATABASE_URL: mongodb://mongo_db:27017
+      DATABASE_URL: mongodb://mongodb:27017
       DATABASE_NAME: /ProductManagementDB
     depends_on:
-      - mongo_db
+      - mongodb
 
 volumes:
-  mongo_db: {}
+  mongodb: {}
