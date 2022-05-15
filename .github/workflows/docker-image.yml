@@ -40,6 +40,11 @@ jobs:
           method: kubeconfig
           kubeconfig:  ${{ secrets.KUBE_CONFIG }}
           context: default
+    
+    - name: Print current working dir
+      run: |
+         ls -la $PWD
+         ls -la $GITHUB_WORKSPACE
           
     - name: Deploy to Kubernetes cluster
       uses: Azure/k8s-deploy@v1
