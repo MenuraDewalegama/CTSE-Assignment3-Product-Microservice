@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 dotenv.config();
 
 app.get('/', (req, res) => {
-    res.send("Product API Microservice");
+    res.send("Product Microservice");
 })
 
 app.use('/product', productAPI());
