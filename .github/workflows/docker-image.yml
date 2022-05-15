@@ -50,4 +50,6 @@ jobs:
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
       with:
-        args: kubectl apply -f kubernetes-configs/product-api-deployment.yaml
+        args: |
+          kubectl delete deployment.apps/product-api-deployment
+          kubectl apply -f kubernetes-configs/product-api-deployment.yaml
