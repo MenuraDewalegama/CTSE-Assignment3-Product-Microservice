@@ -39,20 +39,12 @@ jobs:
       with:
           method: kubeconfig
           kubeconfig:  ${{ secrets.KUBE_CONFIG }}
-#           context: ${{ secrets.KUBE_CONTEXT }} 
     
     - name: Print current working dir
       run: |
          ls -la $PWD
          ls -la $GITHUB_WORKSPACE
           
-#     - name: Deploy to Kubernetes cluster
-#       uses: Azure/k8s-deploy@v1
-#       with:        
-#         manifests: |
-#           kubernetes-configs/product-api-deployment.yaml
-#           kubernetes-configs/product-api-service.yaml
-
     - name: deploy to cluster
       uses: wahyd4/kubectl-helm-action@master
       env:
