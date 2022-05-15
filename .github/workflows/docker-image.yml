@@ -29,26 +29,29 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/ctse-assignment3-product-microservice:latest
           
-#     - uses: actions-hub/kubectl@master
-#       env:
-#           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-#       with:
-#           args: get pods
-
-    - uses: azure/k8s-set-context@v2
+    - uses: actions-hub/kubectl@master
+      env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       with:
-          method: kubeconfig
-          kubeconfig:  ${{ secrets.KUBE_CONFIG }}
-#           context: ${{ secrets.KUBE_CONTEXT }} 
+          args: |
+            get pods
+            apply -f /CTSE-Assignment3-Product-Microservice/product-api-deployment.yaml
+            apply -f /CTSE-Assignment3-Product-Microservice/product-api-service.yaml
+
+#     - uses: azure/k8s-set-context@v2
+#       with:
+#           method: kubeconfig
+#           kubeconfig:  ${{ secrets.KUBE_CONFIG }}
+# #           context: ${{ secrets.KUBE_CONTEXT }} 
     
-    - name: Print current working dir
-      run: |
-         ls -la $PWD
-         ls -la $GITHUB_WORKSPACE
+#     - name: Print current working dir
+#       run: |
+#          ls -la $PWD
+#          ls -la $GITHUB_WORKSPACE
           
-    - name: Deploy to Kubernetes cluster
-      uses: Azure/k8s-deploy@v1
-      with:        
-        manifests: |
-          ${{ github.workspace }}/kubernetes-configs/product-api-deployment.yaml
-          ${{ github.workspace }}/kubernetes-configs/product-api-service.yaml
+#     - name: Deploy to Kubernetes cluster
+#       uses: Azure/k8s-deploy@v1
+#       with:        
+#         manifests: |
+#           ${{ github.workspace }}/kubernetes-configs/product-api-deployment.yaml
+#           ${{ github.workspace }}/kubernetes-configs/product-api-service.yaml
