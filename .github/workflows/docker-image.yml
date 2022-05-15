@@ -39,7 +39,7 @@ jobs:
       with:
           method: kubeconfig
           kubeconfig:  ${{ secrets.KUBE_CONFIG }}
-          context: ${{ secrets.KUBE_CONTEXT }} 
+#           context: ${{ secrets.KUBE_CONTEXT }} 
     
     - name: Print current working dir
       run: |
