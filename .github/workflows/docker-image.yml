@@ -45,5 +45,5 @@ jobs:
       uses: Azure/k8s-deploy@v1
       with:        
         manifests: |
-          kubernetes-configs/product-api-deployment.yml
-          kubernetes-configs/product-api-service.yml
+         ${{ github.workspace }}/kubernetes-configs/product-api-deployment.yml
+         ${{ github.workspace }}/kubernetes-configs/product-api-service.yml
