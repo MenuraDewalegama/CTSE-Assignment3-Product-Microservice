@@ -35,8 +35,8 @@ jobs:
       with:
           args: |
             get pods
-            apply -f /CTSE-Assignment3-Product-Microservice/product-api-deployment.yaml
-            apply -f /CTSE-Assignment3-Product-Microservice/product-api-service.yaml
+            apply -f ~/CTSE-Assignment3-Product-Microservice/product-api-deployment.yaml
+            apply -f ~/CTSE-Assignment3-Product-Microservice/product-api-service.yaml
 
 #     - uses: azure/k8s-set-context@v2
 #       with:
