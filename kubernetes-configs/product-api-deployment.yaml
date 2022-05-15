@@ -19,4 +19,3 @@ spec:
         image: menuradewalegama/ctse-assignment3-product-microservice:latest
         ports:
         - containerPort: 3000
-        
