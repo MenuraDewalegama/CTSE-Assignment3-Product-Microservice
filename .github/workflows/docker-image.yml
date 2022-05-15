@@ -29,11 +29,17 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/ctse-assignment3-product-microservice:latest
           
-    - uses: actions-hub/kubectl@master
-      env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+#     - uses: actions-hub/kubectl@master
+#       env:
+#           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+#       with:
+#           args: get pods
+
+    - uses: azure/k8s-set-context@v2
       with:
-          args: get pods
+          method: kubeconfig
+          kubeconfig:  ${{ secrets.KUBE_CONFIG }}
+          context: default
           
     - name: Deploy to Kubernetes cluster
       uses: Azure/k8s-deploy@v1
