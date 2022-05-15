@@ -44,6 +44,4 @@ jobs:
     - name: Deploy to Kubernetes cluster
       uses: Azure/k8s-deploy@v1
       with:        
-        manifests: |
-          CTSE-Assignment3-Product-Microservice/product-api-deployment.yml
-          CTSE-Assignment3-Product-Microservice/product-api-service.yml
+        manifests: apply -f CTSE-Assignment3-Product-Microservice/
