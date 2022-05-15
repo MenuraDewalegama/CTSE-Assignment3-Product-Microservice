@@ -16,11 +16,7 @@ spec:
     spec:
       containers:
       - name: product-api
-        image: menuradewalegama/ctse-assignment3-product-microservice:v2
+        image: menuradewalegama/ctse-assignment3-product-microservice:latest
         ports:
         - containerPort: 3000
-        env:
-        - name: DATABASE_URL
-          value: mongodb://mongodb:27017
-        - name: DATABASE_NAME
-          value: /ProductManagementDB
+        
