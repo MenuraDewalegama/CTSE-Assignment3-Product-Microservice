@@ -29,18 +29,19 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/ctse-assignment3-product-microservice:latest
           
-    - uses: actions-hub/kubectl@master
+    - name: Checking running pods in the Kubernetes cluster
+      uses: actions-hub/kubectl@master
       env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       with:
           args: get pods
     
-    - name: Print current working dir
+    - name: Print current working directory
       run: |
          ls -la $PWD
          ls -la $GITHUB_WORKSPACE
           
-    - name: deploy to cluster
+    - name: Deploy to Kubernetes cluster
       uses: wahyd4/kubectl-helm-action@master
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
